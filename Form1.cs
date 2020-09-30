@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace SmallYuzuBox
 {
-    public partial class Form1 : Form
+    public partial class Form1 : BaseForm
     {
         private bool isMouse = false; // 鼠标是否按下
         // 原点位置
@@ -33,7 +33,7 @@ namespace SmallYuzuBox
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.BorderStyle = BorderStyle.None;            
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255,192,128);
@@ -41,7 +41,7 @@ namespace SmallYuzuBox
             Font font = new Font(dataGridView1.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = font;            
             dataGridView1.BackgroundColor = Color.FromArgb(255, 192, 128);
-            dataGridView1.AllowUserToResizeRows = false;           
+            dataGridView1.AllowUserToResizeRows = false;                  
             string basepath = "db";
             string path = basepath + @"\base.sqlite";
             SQLiteConnection cn = new SQLiteConnection("data source=" + path);
@@ -113,6 +113,9 @@ namespace SmallYuzuBox
                         double rate = Math.Round(((Double.Parse(srs[6]) - Double.Parse(db.Rows[i][1].ToString())) / Double.Parse(db.Rows[i][1].ToString())) * 100, 2, MidpointRounding.AwayFromZero);
                         dataGridView1.Rows[index].Cells[4].Value = rate > 0 ? "+ " + Math.Abs(rate) + "%" : "- " + Math.Abs(rate) + "%";
                         dataGridView1.Rows[index].Cells[4].Style.ForeColor = rate > 0 ? Color.Red : Color.Green;
+                    }
+                    else { 
+
                     }
                 }
             }
@@ -245,6 +248,11 @@ namespace SmallYuzuBox
             catch {
                 MessageBox.Show("请输入正确的指令");
             }
+        }
+        public override void ChangeGridView(int width, int height)
+        {
+            dataGridView1.Width = width;
+            dataGridView1.Height = height; 
         }
     }
 }
