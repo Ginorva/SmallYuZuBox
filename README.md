@@ -8,6 +8,8 @@
 
 输入框命令：
 
+<img src='https://raw.githubusercontent.com/Ginorva/SmallYuZuBox/master/images/pu.jpg'/>
+
 1.输入：股票代码-买入价-A 添加新的股票数据，会自动调用新浪的接口去获取对应的股票信息
 
 2.输入：股票代码-买入价-U 更新买入价
